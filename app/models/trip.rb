@@ -8,8 +8,8 @@ class Trip < ApplicationRecord
   def calculate_distance
     start_point = get_coordinates(start_address)
     end_point = get_coordinates(destination_address)
-    distance = start_point.distance_from(end_point, units: :kms)
-    self.distance = distance.round(2)
+    distance = start_point.distance_from(end_point, units: :meters)
+    self.distance = distance
   end
 
   def get_coordinates(location)
