@@ -10,8 +10,11 @@ class TripsController < ApplicationController
   end
 
   def create
-    trip = Trip.create!(trip_params)
-
+    trip = Trip.new(trip_params)
+    trip.distance = DistanceCalculator
+                    .new(params[:start_address],
+                         params[:destination_address]).call
+    trip.save
     render json: TripSerializer.new(trip), status: 201
   end
 
