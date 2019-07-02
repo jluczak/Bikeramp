@@ -23,8 +23,6 @@ class TripsController < ApplicationController
 
   def destroy
     trip.destroy!
-
-    head 204
   end
 
   private
