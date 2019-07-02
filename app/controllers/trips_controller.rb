@@ -36,6 +36,6 @@ class TripsController < ApplicationController
   end
 
   def serialized_params
-    [:start_address, :destination_address, :price, :distance]
+    %i[start_address destination_address price distance]
   end
 end
