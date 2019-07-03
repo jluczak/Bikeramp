@@ -12,7 +12,8 @@ class TripsController < ApplicationController
   def create
     trip = Trip.new(trip_params)
     trip.distance = DistanceCalculator
-                    .new(params[:start_address],
+                    .new(Geokit::Geocoders::GoogleGeocoder,
+                         params[:start_address],
                          params[:destination_address]).call
     trip.save
     render json: TripSerializer.new(trip), status: 201

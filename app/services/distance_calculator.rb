@@ -1,5 +1,6 @@
 class DistanceCalculator
-  def initialize(start_address, destination_address)
+  def initialize(geocoder, start_address, destination_address)
+    @geocoder = geocoder
     @start_address = start_address
     @destination_address = destination_address
   end
@@ -11,6 +12,6 @@ class DistanceCalculator
   end
 
   def get_coordinates(location)
-    Geokit::Geocoders::GoogleGeocoder.geocode(location)
+    @geocoder.geocode(location)
   end
 end
