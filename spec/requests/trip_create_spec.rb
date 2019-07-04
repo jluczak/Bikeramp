@@ -4,6 +4,7 @@ RSpec.describe 'Trip creation', type: :request do
   headers = {
     'ACCEPT' => 'application/json'
   }
+  
   let(:action) do
       post '/trips', params: FactoryBot.attributes_for(:trip), headers: headers
   end
