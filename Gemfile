@@ -18,11 +18,11 @@ group :development, :test do
 end
 
 group :development do
+  gem 'guard'
+  gem 'guard-test'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'guard'
-  gem 'guard-test'
 end
 
 group :test do

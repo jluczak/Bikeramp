@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Trip creation', type: :request do
-
-  let(:headers) { { 'ACCEPT' => 'application/json'} }
+  let(:headers) { { 'ACCEPT' => 'application/json' } }
   let(:json_response) { JSON.parse(response.body) }
 
   it 'has a valid factory' do
@@ -22,7 +21,7 @@ RSpec.describe 'Trip creation', type: :request do
 
     it 'creates a trip' do
       VCR.use_cassette('requests/trip_create') do
-        expect{ post_action }.to change { Trip.count }.by(1)
+        expect { post_action }.to change { Trip.count }.by(1)
       end
     end
 
@@ -30,19 +29,21 @@ RSpec.describe 'Trip creation', type: :request do
       VCR.use_cassette('requests/trip_create') do
         post_action
         expect(json_response['data']['attributes']).to include(
-          "start_address" =>  'Plac Europejski 2, Warszawa, Polska',
-          "destination_address" => 'Leszno 15, Warszawa, Polska',
-          "price" => "4.65",
-          "distance" => '798.76'
+          'start_address' => 'Plac Europejski 2, Warszawa, Polska',
+          'destination_address' => 'Leszno 15, Warszawa, Polska',
+          'price' => '4.65',
+          'distance' => '798.76'
         )
       end
     end
   end
 
   context 'invalid data' do
-    let(:post_action) { post '/trips', params: { start_address: 'fjsjakdk',
-                             destination_address: 'kadkdfmfd',
-                             price: 3.54 }, headers: headers }
+    let(:post_action) do
+      post '/trips', params: { start_address: 'fjsjakdk',
+                               destination_address: 'kadkdfmfd',
+                               price: 3.54 }, headers: headers
+    end
 
     it 'it returns 422 with json format' do
       VCR.use_cassette('requests/trip_create') do
@@ -54,7 +55,7 @@ RSpec.describe 'Trip creation', type: :request do
 
     it 'it does not create a trip' do
       VCR.use_cassette('requests/trip_create') do
-        expect{ post_action }.to_not change { Trip.count }
+        expect { post_action }.to_not change { Trip.count }
       end
     end
 
@@ -62,8 +63,8 @@ RSpec.describe 'Trip creation', type: :request do
       VCR.use_cassette('requests/trip_create') do
         post_action
         expect(json_response).to include(
-          "destination_address" => ["Could not find address"],
-          "start_address" => ["Could not find address"]
+          'destination_address' => ['Could not find address'],
+          'start_address' => ['Could not find address']
         )
       end
     end

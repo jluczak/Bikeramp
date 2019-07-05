@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Trip destruction', type: :request do
-
   it 'has a valid factory' do
     expect(FactoryBot.create(:trip)).to be_valid
   end
@@ -18,6 +17,6 @@ RSpec.describe 'Trip destruction', type: :request do
   end
 
   it 'destroys a trip' do
-    expect{ trip_destroy }.to change { Trip.count }.by(-1)
+    expect { trip_destroy }.to change { Trip.count }.by(-1)
   end
 end

@@ -18,7 +18,6 @@ class TripsController < ApplicationController
     else
       render json: trip.errors, status: 422
     end
-
   end
 
   def update
@@ -46,10 +45,10 @@ class TripsController < ApplicationController
   end
 
   def set_distance(trip)
-    geo =  DistanceCalculator
-              .new(Geokit::Geocoders::GoogleGeocoder,
-                  params[:start_address],
-                  params[:destination_address]).call
+    geo = DistanceCalculator
+          .new(Geokit::Geocoders::GoogleGeocoder,
+               params[:start_address],
+               params[:destination_address]).call
     trip.distance = geo[:distance]
     geo[:errors]
   end

@@ -16,16 +16,16 @@ class DistanceCalculator
   attr_accessor :errors, :distance
 
   def start_point
-    @start_point ||= get_coordinates(@start_address, "start_address")
+    @start_point ||= get_coordinates(@start_address, 'start_address')
   end
 
   def end_point
-    @end_point ||= get_coordinates(@destination_address, "destination_address")
+    @end_point ||= get_coordinates(@destination_address, 'destination_address')
   end
 
   def get_coordinates(location, key)
     @geocoder.geocode(location).tap do |geo|
-      errors.add(key, "Could not find address") unless geo.success
+      errors.add(key, 'Could not find address') unless geo.success
     end
   end
 
