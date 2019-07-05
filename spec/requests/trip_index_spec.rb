@@ -15,16 +15,11 @@ RSpec.describe 'Trip index', type: :request do
     expect(response.content_type).to eq('application/json')
   end
 
-  it "response contains expected attributes" do
+  it 'returns expected attributes' do
     get_trips
     json_response = JSON.parse(response.body)
     expect(json_response['data']
       .first['attributes'].keys)
-      .to eq(%w[
-                start_address
-                 destination_address
-                 price
-                 distance
-            ])
+      .to eq(["start_address", "destination_address", "price", "distance"])
   end
 end

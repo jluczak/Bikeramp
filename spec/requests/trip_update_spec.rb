@@ -13,9 +13,9 @@ RSpec.describe 'Trip update', type: :request do
     expect(FactoryBot.create(:trip)).to be_valid
   end
 
-  let!(:trip) { FactoryBot.create(:trip, FactoryBot.attributes_for(:trip)) }
+  let!(:trip) { FactoryBot.create(:trip) }
 
-  context 'valid data' do
+  context 'with valid data' do
     let(:trip_update) do
       patch "/trips/#{trip.id}", params: { start_address: 'Plan Wilsona 2, Warszawa, Polska',
                                            destination_address: 'Żelazna 5, Warszawa, Polska',
@@ -28,7 +28,7 @@ RSpec.describe 'Trip update', type: :request do
         'distance' => '4647.54' }
     end
 
-    it 'id returns 200 with json format' do
+    it 'returns 200 with json format' do
       VCR.use_cassette('requests/trip_update') do
         trip_update
         expect(response).to have_http_status(200)
@@ -36,7 +36,7 @@ RSpec.describe 'Trip update', type: :request do
       end
     end
 
-    it 'id updates a trip' do
+    it 'updates a trip' do
       VCR.use_cassette('requests/trip_update') do
         trip_update
         get "/trips/#{trip.id}"
@@ -44,7 +44,7 @@ RSpec.describe 'Trip update', type: :request do
       end
     end
 
-    it 'id returns a trip' do
+    it 'returns a trip' do
       VCR.use_cassette('requests/trip_update') do
         trip_update
         expect(json_response['data']['attributes']).to include(attributes)
@@ -52,7 +52,7 @@ RSpec.describe 'Trip update', type: :request do
     end
   end
 
-  context 'invalid data' do
+  context 'with invalid data' do
     let(:trip_update) do
       patch "/trips/#{trip.id}", params: { start_address: 'fjsjakdk',
                                            destination_address: 'kadkdfmfd',
@@ -66,7 +66,7 @@ RSpec.describe 'Trip update', type: :request do
         'distance' => '798.76' }
     end
 
-    it 'returns 422 in json format' do
+    it 'returns 422 with json format' do
       VCR.use_cassette('requests/trip_update') do
         trip_update
         expect(response).to have_http_status(422)

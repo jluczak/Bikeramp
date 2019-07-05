@@ -6,12 +6,12 @@ RSpec.describe 'Trip destruction', type: :request do
   end
 
   let!(:trip) do
-    FactoryBot.create(:trip, FactoryBot.attributes_for(:trip))
+    FactoryBot.create(:trip)
   end
 
   let(:trip_destroy) { delete "/trips/#{trip.id}" }
 
-  it 'it returns 204' do
+  it 'returns 204' do
     trip_destroy
     expect(response).to have_http_status(204)
   end

@@ -8,12 +8,12 @@ RSpec.describe 'Trip creation', type: :request do
     expect(FactoryBot.create(:trip)).to be_valid
   end
 
-  context 'valid data' do
-    let(:post_action) { post '/trips', params: FactoryBot.attributes_for(:trip), headers: headers }
+  context 'with valid data' do
+    let(:trip_creation) { post '/trips', params: FactoryBot.attributes_for(:trip), headers: headers }
 
     it 'returns 201 with json format' do
       VCR.use_cassette('requests/trip_create') do
-        post_action
+        trip_creation
         expect(response).to have_http_status(201)
         expect(response.content_type).to eq('application/json')
       end
@@ -21,13 +21,13 @@ RSpec.describe 'Trip creation', type: :request do
 
     it 'creates a trip' do
       VCR.use_cassette('requests/trip_create') do
-        expect { post_action }.to change { Trip.count }.by(1)
+        expect { trip_creation }.to change { Trip.count }.by(1)
       end
     end
 
     it 'returns a trip' do
       VCR.use_cassette('requests/trip_create') do
-        post_action
+        trip_creation
         expect(json_response['data']['attributes']).to include(
           'start_address' => 'Plac Europejski 2, Warszawa, Polska',
           'destination_address' => 'Leszno 15, Warszawa, Polska',
@@ -38,30 +38,30 @@ RSpec.describe 'Trip creation', type: :request do
     end
   end
 
-  context 'invalid data' do
-    let(:post_action) do
+  context 'with invalid data' do
+    let(:trip_creation) do
       post '/trips', params: { start_address: 'fjsjakdk',
                                destination_address: 'kadkdfmfd',
                                price: 3.54 }, headers: headers
     end
 
-    it 'it returns 422 with json format' do
+    it 'returns 422 with json format' do
       VCR.use_cassette('requests/trip_create') do
-        post_action
+        trip_creation
         expect(response).to have_http_status(422)
         expect(response.content_type).to eq('application/json')
       end
     end
 
-    it 'it does not create a trip' do
+    it 'does not create a trip' do
       VCR.use_cassette('requests/trip_create') do
-        expect { post_action }.to_not change { Trip.count }
+        expect { trip_creation }.to_not change { Trip.count }
       end
     end
 
-    it 'it returns error' do
+    it 'returns error' do
       VCR.use_cassette('requests/trip_create') do
-        post_action
+        trip_creation
         expect(json_response).to include(
           'destination_address' => ['Could not find address'],
           'start_address' => ['Could not find address']
