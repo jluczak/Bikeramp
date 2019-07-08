@@ -33,7 +33,7 @@ describe DistanceCalculator do
     end
   end
 
-  context 'with invalid params', vcr: { cassette_name: 'requests/trip_create_failure' } do
+  context 'with invalid params', vcr: { cassette_name: 'requests/trip_create_failure_both_addresses_invalid' } do
     let(:start_address) { 'lskfshkvsn' }
     let(:destination_address) { 'sckhkuvcsj' }
 

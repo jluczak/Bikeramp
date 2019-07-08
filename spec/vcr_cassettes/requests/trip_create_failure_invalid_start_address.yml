@@ -1,0 +1,174 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://maps.googleapis.com/maps/api/geocode/json?address=fjsjakdk&key=<google_api_key>&sensor=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Mon, 08 Jul 2019 16:16:25 GMT
+      Expires:
+      - Mon, 08 Jul 2019 22:16:25 GMT
+      Cache-Control:
+      - public, max-age=21600
+      Vary:
+      - Accept-Language
+      Access-Control-Allow-Origin:
+      - "*"
+      Server:
+      - mafe
+      Content-Length:
+      - '65'
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Server-Timing:
+      - gfet4t7; dur=202
+      Alt-Svc:
+      - quic=":443"; ma=2592000; v="46,43,39"
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+           "results" : [],
+           "status" : "ZERO_RESULTS"
+        }
+    http_version: 
+  recorded_at: Mon, 08 Jul 2019 16:16:25 GMT
+- request:
+    method: get
+    uri: https://maps.googleapis.com/maps/api/geocode/json?address=Leszno%2015,%20Warszawa,%20Polska&key=<google_api_key>&sensor=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Mon, 08 Jul 2019 16:16:25 GMT
+      Expires:
+      - Mon, 08 Jul 2019 22:16:25 GMT
+      Cache-Control:
+      - public, max-age=21600
+      Vary:
+      - Accept-Language
+      Access-Control-Allow-Origin:
+      - "*"
+      Server:
+      - mafe
+      Content-Length:
+      - '558'
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Server-Timing:
+      - gfet4t7; dur=258
+      Alt-Svc:
+      - quic=":443"; ma=2592000; v="46,43,39"
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+           "results" : [
+              {
+                 "address_components" : [
+                    {
+                       "long_name" : "15",
+                       "short_name" : "15",
+                       "types" : [ "street_number" ]
+                    },
+                    {
+                       "long_name" : "Leszno",
+                       "short_name" : "Leszno",
+                       "types" : [ "route" ]
+                    },
+                    {
+                       "long_name" : "Wola",
+                       "short_name" : "Wola",
+                       "types" : [ "political", "sublocality", "sublocality_level_1" ]
+                    },
+                    {
+                       "long_name" : "Warszawa",
+                       "short_name" : "Warszawa",
+                       "types" : [ "locality", "political" ]
+                    },
+                    {
+                       "long_name" : "Warszawa",
+                       "short_name" : "Warszawa",
+                       "types" : [ "administrative_area_level_2", "political" ]
+                    },
+                    {
+                       "long_name" : "mazowieckie",
+                       "short_name" : "mazowieckie",
+                       "types" : [ "administrative_area_level_1", "political" ]
+                    },
+                    {
+                       "long_name" : "Poland",
+                       "short_name" : "PL",
+                       "types" : [ "country", "political" ]
+                    },
+                    {
+                       "long_name" : "01-199",
+                       "short_name" : "01-199",
+                       "types" : [ "postal_code" ]
+                    }
+                 ],
+                 "formatted_address" : "Leszno 15, 01-199 Warszawa, Poland",
+                 "geometry" : {
+                    "location" : {
+                       "lat" : 52.2373238,
+                       "lng" : 20.9749891
+                    },
+                    "location_type" : "ROOFTOP",
+                    "viewport" : {
+                       "northeast" : {
+                          "lat" : 52.23867278029149,
+                          "lng" : 20.9763380802915
+                       },
+                       "southwest" : {
+                          "lat" : 52.2359748197085,
+                          "lng" : 20.9736401197085
+                       }
+                    }
+                 },
+                 "place_id" : "ChIJQcYOxn3LHkcRhHfbBtAMRUI",
+                 "plus_code" : {
+                    "compound_code" : "6XPF+WX Warsaw, Poland",
+                    "global_code" : "9G426XPF+WX"
+                 },
+                 "types" : [ "street_address" ]
+              }
+           ],
+           "status" : "OK"
+        }
+    http_version: 
+  recorded_at: Mon, 08 Jul 2019 16:16:25 GMT
+recorded_with: VCR 5.0.0
