@@ -3,9 +3,9 @@ require 'rails_helper'
 describe DistanceCalculator do
   subject do
     described_class.new(
-        Geokit::Geocoders::GoogleGeocoder,
-        start_address,
-        destination_address
+      Geokit::Geocoders::GoogleGeocoder,
+      start_address,
+      destination_address
     )
   end
 
@@ -30,6 +30,20 @@ describe DistanceCalculator do
       it 'returns distance from geocoder' do
         expect(returned_distance.round(2)).to eq(787.84)
       end
+    end
+  end
+
+  context 'with invalid params', vcr: { cassette_name: 'requests/trip_create_failure' } do
+    let(:start_address) { 'lskfshkvsn' }
+    let(:destination_address) { 'sckhkuvcsj' }
+
+    let(:returned_errors) { subject.call[:errors] }
+
+    it 'returns errors' do
+      expect(returned_errors.messages).to eq(
+        start_address: ['Could not find address'],
+        destination_address: ['Could not find address']
+      )
     end
   end
 end
