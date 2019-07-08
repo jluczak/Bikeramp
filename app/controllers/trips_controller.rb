@@ -2,13 +2,13 @@ class TripsController < ApplicationController
   rescue_from AddressNotFound, with: :render_address_not_found
 
   def show
-    render json: TripSerializer.new(trip)
+    render json: TripSerializer.new(trip), status: 200
   end
 
   def index
     trips = Trip.all
 
-    render json: TripSerializer.new(trips)
+    render json: TripSerializer.new(trips), status: 200
   end
 
   def create
@@ -19,7 +19,7 @@ class TripsController < ApplicationController
 
   def update
     trip.update(trip_params.merge(distance: calculate_distance))
-    render json: TripSerializer.new(trip)
+    render json: TripSerializer.new(trip), status: 200
   end
 
   def destroy
