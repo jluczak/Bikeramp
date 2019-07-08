@@ -58,7 +58,6 @@ RSpec.describe 'Trip creation', type: :request do
 
       it 'returns error' do
         subject
-        puts json_response
         expect(json_response).to include(
           'destination_address' => ['Could not find address'],
           'start_address' => ['Could not find address']
@@ -75,7 +74,7 @@ RSpec.describe 'Trip creation', type: :request do
         }
       end
 
-      it 'returns 422 with json format' do
+      it 'returns 422 status code' do
         subject
         expect(response).to have_http_status(422)
       end
@@ -88,6 +87,32 @@ RSpec.describe 'Trip creation', type: :request do
         subject
         expect(json_response).to include(
           'start_address' => ['Could not find address']
+        )
+      end
+    end
+
+    context 'with invalid destination address', vcr: { cassette_name: 'requests/trip_create_failure_invalid_destination_address' } do
+      let(:params) do
+        {
+          start_address: 'Leszno 15, Warszawa, Polska',
+          destination_address: 'fjsjakdk',
+          price: 3.54
+        }
+      end
+
+      it 'returns 422 status code' do
+        subject
+        expect(response).to have_http_status(422)
+      end
+
+      it 'does not create a trip' do
+        expect { subject }.to_not change { Trip.count }
+      end
+
+      it 'returns error' do
+        subject
+        expect(json_response).to include(
+          'destination_address' => ['Could not find address']
         )
       end
     end

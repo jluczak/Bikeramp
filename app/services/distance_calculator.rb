@@ -12,16 +12,15 @@ class DistanceCalculator
     if start_point.success && end_point.success
       start_point.distance_from(end_point, units: :meters)
     else
-      messages = generate_messages(end_point)
-
-      raise AddressNotFound, messages
+      raise AddressNotFound, generate_error_messages(start_point, end_point)
     end
   end
 
   private
 
-  def generate_messages(end_point)
-    messages = { start_address: ['Could not find address'] }
+  def generate_error_messages(start_point, end_point)
+    messages = {}
+    messages.merge!(start_address: ['Could not find address']) unless start_point.success
     messages.merge!(destination_address: ['Could not find address']) unless end_point.success
 
     [messages]
