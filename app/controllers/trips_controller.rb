@@ -1,4 +1,6 @@
 class TripsController < ApplicationController
+  rescue_from AddressNotFound, with: :render_address_not_found
+
   def show
     render json: TripSerializer.new(trip)
   end
@@ -10,20 +12,14 @@ class TripsController < ApplicationController
   end
 
   def create
-    trip = Trip.new(trip_params)
-    set_distance(trip)
-    trip.save!
+    trip = Trip.new(trip_params.merge(distance: calculate_distance))
+    trip.save
     render json: TripSerializer.new(trip), status: 201
-  rescue AddressNotFound => address_not_found
-    render json: address_not_found.messages, status: 422
   end
 
   def update
-    set_distance(trip)
-    trip.update!(trip_params)
+    trip.update(trip_params.merge(distance: calculate_distance))
     render json: TripSerializer.new(trip)
-  rescue AddressNotFound => address_not_found
-    render json: address_not_found.messages, status: 422
   end
 
   def destroy
@@ -40,11 +36,17 @@ class TripsController < ApplicationController
     params.permit(:start_address, :destination_address, :price)
   end
 
-  def set_distance(trip)
-    geo = DistanceCalculator
-          .new(Geokit::Geocoders::GoogleGeocoder,
-               params[:start_address],
-               params[:destination_address]).call
-    trip.distance = geo
+  def calculate_distance
+    distance_calculator = DistanceCalculator.new(
+      Geokit::Geocoders::GoogleGeocoder,
+      trip_params[:start_address],
+      trip_params[:destination_address]
+    )
+
+    distance_calculator.call
+  end
+
+  def render_address_not_found(address_not_found)
+    render json: address_not_found.messages, status: 422
   end
 end
