@@ -36,7 +36,7 @@ RSpec.describe 'Trip creation', type: :request do
     end
   end
 
-  context 'with invalid data', vcr: { cassette_name: 'requests/trip_create' } do
+  context 'with invalid data', vcr: { cassette_name: 'requests/trip_create_failure' }do
     let(:params) do
       {
         start_address: 'fjsjakdk',
