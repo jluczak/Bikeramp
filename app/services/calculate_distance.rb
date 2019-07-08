@@ -1,3 +1,0 @@
-class CalculateDistance
-  
-end
