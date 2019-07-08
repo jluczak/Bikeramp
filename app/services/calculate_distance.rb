@@ -1,0 +1,3 @@
+class CalculateDistance
+  
+end
