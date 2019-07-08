@@ -11,23 +11,19 @@ class TripsController < ApplicationController
 
   def create
     trip = Trip.new(trip_params)
-    trip.errors.merge!(set_distance(trip))
-    if trip.errors.empty?
-      trip.save!
-      render json: TripSerializer.new(trip), status: 201
-    else
-      render json: trip.errors, status: 422
-    end
+    set_distance(trip)
+    trip.save!
+    render json: TripSerializer.new(trip), status: 201
+  rescue AddressNotFound => address_not_found
+    render json: address_not_found.messages, status: 422
   end
 
   def update
-    trip.errors.merge!(set_distance(trip))
-    if trip.errors.empty?
-      trip.update!(trip_params)
-      render json: TripSerializer.new(trip)
-    else
-      render json: trip.errors, status: 422
-    end
+    set_distance(trip)
+    trip.update!(trip_params)
+    render json: TripSerializer.new(trip)
+  rescue AddressNotFound => address_not_found
+    render json: address_not_found.messages, status: 422
   end
 
   def destroy
@@ -49,7 +45,6 @@ class TripsController < ApplicationController
           .new(Geokit::Geocoders::GoogleGeocoder,
                params[:start_address],
                params[:destination_address]).call
-    trip.distance = geo[:distance]
-    geo[:errors]
+    trip.distance = geo
   end
 end
