@@ -1,14 +1,13 @@
 class MonthlyStatsQuery
   def self.monthly_stats(relation: Trip)
     today = DateTime.current
-    current_month_first_day = today.beginning_of_month
     relation
       .select('date(created_at) as day,
                sum(distance) as total_distance,
                sum(price) as total_price,
                avg(distance) as avg_ride,
                avg(price) as avg_price')
-      .where('created_at > ?', current_month_first_day)
+      .where('created_at > ?', today.beginning_of_month)
       .group('date(created_at)')
       .order(Arel.sql('date(created_at)'))
       .as_json(except: :id)
