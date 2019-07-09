@@ -6,7 +6,8 @@ class MonthlyStatsQuery
       .select('date(created_at) as day,
                sum(distance) as total_distance,
                sum(price) as total_price,
-               avg(distance) as avg_ride')
+               avg(distance) as avg_ride,
+               avg(price) as avg_price')
       .where('created_at > ?', current_month_first_day)
       .group('date(created_at)')
       .order('date(created_at)')
