@@ -1,7 +1,7 @@
 class StatsController < ApplicationController
   def weekly
-    total_distance = MonthlyStatsQuery.weekly_distance
-    total_price = MonthlyStatsQuery.weekly_price
+    total_distance = WeeklyStatsQuery.weekly_distance
+    total_price = WeeklyStatsQuery.weekly_price
     render json: {
       total_distance: "#{total_distance}km",
       total_price: "#{total_price}PLN"
