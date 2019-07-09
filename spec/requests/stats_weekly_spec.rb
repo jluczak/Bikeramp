@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Weekly statistics', type: :request do
+describe 'Weekly stats', type: :request do
   let!(:trips) do
     FactoryBot.create_list(:trip, 2)
   end
