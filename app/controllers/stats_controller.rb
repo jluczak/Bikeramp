@@ -9,6 +9,7 @@ class StatsController < ApplicationController
   end
 
   def monthly
-    render json: "stats", status: 200
+    monthly_stats = DistanceQuery.monthly_statistics
+    render json: monthly_stats, status: 200
   end
 end
