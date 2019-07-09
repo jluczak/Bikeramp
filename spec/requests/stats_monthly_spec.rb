@@ -6,7 +6,7 @@ describe 'monthly stats', type: :request do
   let(:json_response) { JSON.parse(response.body) }
   let(:current_month) { DateTime.current.strftime('%m') }
 
-  let!(:trip) { FactoryBot.create(:trip, created_at: "2019-#{current_month}-02") }
+  let!(:trip) { FactoryBot.create(:trip, created_at: "2019-#{current_month}-02", price: "2.0") }
   let!(:trip2) { FactoryBot.create(:trip, created_at: "2019-#{current_month}-02", distance: "100.0") }
   let!(:trip3) { FactoryBot.create(:trip, created_at: "2019-#{current_month}-27") }
   let!(:trip4) { FactoryBot.create(:trip, created_at: 1.month.ago) }
@@ -33,4 +33,9 @@ describe 'monthly stats', type: :request do
     expect(json_response[1]).to include({ "total_distance" => "798.76" })
   end
 
+  it 'returns total_price grouped by day' do
+    subject
+    expect(json_response[0]).to include({ "total_price" => "6.65" })
+    expect(json_response[1]).to include({ "total_price" => "4.65" })
+  end
 end
