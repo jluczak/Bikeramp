@@ -19,6 +19,11 @@ describe 'Weekly stats', type: :request do
       subject
       expect(json_response).to include("total_distance" => "1597.52km")
     end
+
+    it 'returns weekly total price' do
+      subject
+      expect(json_response).to include("total_price" => "9.3PLN")
+    end
   end
 
   context 'with trips older that week' do
@@ -29,6 +34,11 @@ describe 'Weekly stats', type: :request do
     it 'returns weekly total distance' do
       subject
       expect(json_response).to include("total_distance" => "0.0km")
+    end
+
+    it 'returns weekly total price' do
+      subject
+      expect(json_response).to include("total_price" => "0.0PLN")
     end
   end
 end
