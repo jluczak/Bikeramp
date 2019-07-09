@@ -9,5 +9,6 @@ class StatsController < ApplicationController
   end
 
   def monthly
+    render json: "stats", status: 200
   end
 end
