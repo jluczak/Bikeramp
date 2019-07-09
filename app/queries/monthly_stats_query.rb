@@ -1,11 +1,5 @@
-class DistanceQuery
-  def self.weekly_distance(relation: Trip)
-    relation
-      .where('created_at > ?', 1.week.ago)
-      .sum(:distance)
-  end
-
-  def self.monthly_statistics(relation: Trip)
+class MonthlyStatsQuery
+  def self.monthly_stats(relation: Trip)
     today = DateTime.current
     current_month_first_day = today.beginning_of_month
     relation
