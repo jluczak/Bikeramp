@@ -16,7 +16,7 @@ describe 'monthly stats', type: :request do
     expect(response).to have_http_status(200)
   end
 
-  it 'returns only days where trips where made' do
+  it 'returns only days where trips were made' do
     subject
     expect(json_response[0]).to include({ "day" => "2019-#{current_month}-02" })
     expect(json_response[1]).to include({ "day" => "2019-#{current_month}-27" })
