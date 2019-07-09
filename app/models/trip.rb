@@ -3,4 +3,5 @@ class Trip < ApplicationRecord
   validates :price, :distance, numericality: { greater_than: 0 }
 
   scope :weekly_distance, -> { DistanceQuery.weekly_distance }
+  scope :weekly_price, -> { PriceQuery.weekly_price }
 end
