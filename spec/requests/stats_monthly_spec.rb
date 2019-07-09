@@ -27,15 +27,21 @@ describe 'monthly stats', type: :request do
     expect(json_response.count).to eq(2)
   end
 
-  it 'returns total_distance grouped by day' do
+  it 'returns total distance grouped by day' do
     subject
     expect(json_response[0]).to include({ "total_distance" => "898.76" })
     expect(json_response[1]).to include({ "total_distance" => "798.76" })
   end
 
-  it 'returns total_price grouped by day' do
+  it 'returns total price grouped by day' do
     subject
     expect(json_response[0]).to include({ "total_price" => "6.65" })
     expect(json_response[1]).to include({ "total_price" => "4.65" })
+  end
+
+  it 'returns average distance grouped by day' do
+    subject
+    expect(json_response[0]).to include({ "avg_ride" => "449.38" })
+    expect(json_response[1]).to include({ "avg_ride" => "798.76" })
   end
 end
