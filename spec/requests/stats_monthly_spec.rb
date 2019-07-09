@@ -44,4 +44,10 @@ describe 'monthly stats', type: :request do
     expect(json_response[0]).to include({ "avg_ride" => "449.38" })
     expect(json_response[1]).to include({ "avg_ride" => "798.76" })
   end
+
+  it 'returns average price grouped by day' do
+    subject
+    expect(json_response[0]).to include({ "avg_price" => "3.325" })
+    expect(json_response[1]).to include({ "avg_price" => "4.65" })
+  end
 end
