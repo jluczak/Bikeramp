@@ -1,0 +1,243 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://maps.googleapis.com/maps/api/geocode/json?address=Plac%20Europejski%202,%20Warszawa,%20Polska&key=<google_api_key>&sensor=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Fri, 05 Jul 2019 09:48:20 GMT
+      Expires:
+      - Fri, 05 Jul 2019 15:48:20 GMT
+      Cache-Control:
+      - public, max-age=21600
+      Vary:
+      - Accept-Language
+      Access-Control-Allow-Origin:
+      - "*"
+      Server:
+      - mafe
+      Content-Length:
+      - '560'
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Server-Timing:
+      - gfet4t7; dur=283
+      Alt-Svc:
+      - quic=":443"; ma=2592000; v="46,43,39"
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+           "results" : [
+              {
+                 "address_components" : [
+                    {
+                       "long_name" : "2",
+                       "short_name" : "2",
+                       "types" : [ "street_number" ]
+                    },
+                    {
+                       "long_name" : "plac Europejski",
+                       "short_name" : "plac Europejski",
+                       "types" : [ "route" ]
+                    },
+                    {
+                       "long_name" : "Wola",
+                       "short_name" : "Wola",
+                       "types" : [ "political", "sublocality", "sublocality_level_1" ]
+                    },
+                    {
+                       "long_name" : "Warszawa",
+                       "short_name" : "Warszawa",
+                       "types" : [ "locality", "political" ]
+                    },
+                    {
+                       "long_name" : "Warszawa",
+                       "short_name" : "Warszawa",
+                       "types" : [ "administrative_area_level_2", "political" ]
+                    },
+                    {
+                       "long_name" : "mazowieckie",
+                       "short_name" : "mazowieckie",
+                       "types" : [ "administrative_area_level_1", "political" ]
+                    },
+                    {
+                       "long_name" : "Poland",
+                       "short_name" : "PL",
+                       "types" : [ "country", "political" ]
+                    },
+                    {
+                       "long_name" : "00-844",
+                       "short_name" : "00-844",
+                       "types" : [ "postal_code" ]
+                    }
+                 ],
+                 "formatted_address" : "plac Europejski 2, 00-844 Warszawa, Poland",
+                 "geometry" : {
+                    "location" : {
+                       "lat" : 52.2325258,
+                       "lng" : 20.9837043
+                    },
+                    "location_type" : "ROOFTOP",
+                    "viewport" : {
+                       "northeast" : {
+                          "lat" : 52.2338747802915,
+                          "lng" : 20.98505328029151
+                       },
+                       "southwest" : {
+                          "lat" : 52.2311768197085,
+                          "lng" : 20.9823553197085
+                       }
+                    }
+                 },
+                 "place_id" : "ChIJaYoWp4TMHkcRfuqNlLtFHGY",
+                 "plus_code" : {
+                    "compound_code" : "6XMM+2F Warsaw, Poland",
+                    "global_code" : "9G426XMM+2F"
+                 },
+                 "types" : [ "street_address" ]
+              }
+           ],
+           "status" : "OK"
+        }
+    http_version: 
+  recorded_at: Fri, 05 Jul 2019 09:48:20 GMT
+- request:
+    method: get
+    uri: https://maps.googleapis.com/maps/api/geocode/json?address=Leszno%2015,%20Warszawa,%20Polska&key=<google_api_key>&sensor=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Fri, 05 Jul 2019 09:48:20 GMT
+      Expires:
+      - Fri, 05 Jul 2019 15:48:20 GMT
+      Cache-Control:
+      - public, max-age=21600
+      Vary:
+      - Accept-Language
+      Access-Control-Allow-Origin:
+      - "*"
+      Server:
+      - mafe
+      Content-Length:
+      - '558'
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Server-Timing:
+      - gfet4t7; dur=231
+      Alt-Svc:
+      - quic=":443"; ma=2592000; v="46,43,39"
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+           "results" : [
+              {
+                 "address_components" : [
+                    {
+                       "long_name" : "15",
+                       "short_name" : "15",
+                       "types" : [ "street_number" ]
+                    },
+                    {
+                       "long_name" : "Leszno",
+                       "short_name" : "Leszno",
+                       "types" : [ "route" ]
+                    },
+                    {
+                       "long_name" : "Wola",
+                       "short_name" : "Wola",
+                       "types" : [ "political", "sublocality", "sublocality_level_1" ]
+                    },
+                    {
+                       "long_name" : "Warszawa",
+                       "short_name" : "Warszawa",
+                       "types" : [ "locality", "political" ]
+                    },
+                    {
+                       "long_name" : "Warszawa",
+                       "short_name" : "Warszawa",
+                       "types" : [ "administrative_area_level_2", "political" ]
+                    },
+                    {
+                       "long_name" : "mazowieckie",
+                       "short_name" : "mazowieckie",
+                       "types" : [ "administrative_area_level_1", "political" ]
+                    },
+                    {
+                       "long_name" : "Poland",
+                       "short_name" : "PL",
+                       "types" : [ "country", "political" ]
+                    },
+                    {
+                       "long_name" : "01-199",
+                       "short_name" : "01-199",
+                       "types" : [ "postal_code" ]
+                    }
+                 ],
+                 "formatted_address" : "Leszno 15, 01-199 Warszawa, Poland",
+                 "geometry" : {
+                    "location" : {
+                       "lat" : 52.2373238,
+                       "lng" : 20.9749891
+                    },
+                    "location_type" : "ROOFTOP",
+                    "viewport" : {
+                       "northeast" : {
+                          "lat" : 52.23867278029149,
+                          "lng" : 20.9763380802915
+                       },
+                       "southwest" : {
+                          "lat" : 52.2359748197085,
+                          "lng" : 20.9736401197085
+                       }
+                    }
+                 },
+                 "place_id" : "ChIJQcYOxn3LHkcRhHfbBtAMRUI",
+                 "plus_code" : {
+                    "compound_code" : "6XPF+WX Warsaw, Poland",
+                    "global_code" : "9G426XPF+WX"
+                 },
+                 "types" : [ "street_address" ]
+              }
+           ],
+           "status" : "OK"
+        }
+    http_version: 
+  recorded_at: Fri, 05 Jul 2019 09:48:20 GMT
+recorded_with: VCR 5.0.0
