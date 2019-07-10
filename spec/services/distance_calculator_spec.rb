@@ -42,10 +42,10 @@ describe DistanceCalculator do
     it 'raises error with corresponding messages' do
       expect { subject.call }.to raise_error do |error|
         expect(error).to be_a(AddressNotFound)
-        expect(error.messages).to eq [
+        expect(error.messages).to eq ({
           start_address: ['Could not find address'],
           destination_address: ['Could not find address']
-        ]
+        })
       end
     end
   end

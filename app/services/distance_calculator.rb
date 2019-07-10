@@ -19,11 +19,11 @@ class DistanceCalculator
   private
 
   def generate_error_messages(start_point, end_point)
-    messages = {}
-    messages.merge!(start_address: ['Could not find address']) unless start_point.success
-    messages.merge!(destination_address: ['Could not find address']) unless end_point.success
+    messages = []
+    messages << { start_address: ['Could not find address'] } unless start_point.success
+    messages << { destination_address: ['Could not find address'] } unless end_point.success
 
-    [messages]
+    messages.inject(:merge)
   end
 
   attr_reader :geocoder, :start_address, :destination_address

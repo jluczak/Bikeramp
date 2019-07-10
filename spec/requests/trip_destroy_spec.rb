@@ -11,12 +11,8 @@ RSpec.describe 'Trip destruction', type: :request do
 
   let(:trip_destroy) { delete "/trips/#{trip.id}" }
 
-  it 'returns 204' do
-    trip_destroy
-    expect(response).to have_http_status(204)
-  end
-
-  it 'destroys a trip' do
+  it 'destroys a trip and returns 204 status code' do
     expect { trip_destroy }.to change { Trip.count }.by(-1)
+    expect(response).to have_http_status(204)
   end
 end
