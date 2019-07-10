@@ -11,7 +11,7 @@ describe 'Weekly stats', type: :request do
   end
 
   context 'with trips from current week only' do
-    let!(:trips) do
+    let!(:current_trips) do
       FactoryBot.create_list(:trip, 2)
     end
 
@@ -27,9 +27,8 @@ describe 'Weekly stats', type: :request do
   end
 
   context 'with trips older that week' do
-    let!(:trip) { FactoryBot.create(:trip, created_at: 2.weeks.ago) }
-    let!(:trip) { FactoryBot.create(:trip, created_at: 1.month.ago) }
-    let!(:trip) { FactoryBot.create(:trip, created_at: 1.year.ago) }
+    let!(:trip_two_weeks_ago) { FactoryBot.create(:trip, created_at: 2.weeks.ago) }
+    let!(:trip_from_last_month) { FactoryBot.create(:trip, created_at: 1.month.ago) }
 
     it 'returns weekly total distance' do
       subject

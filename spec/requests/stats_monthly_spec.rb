@@ -6,10 +6,10 @@ describe 'monthly stats', type: :request do
   let(:json_response) { JSON.parse(response.body) }
   let(:current_month) { DateTime.current.strftime('%m') }
 
-  let!(:trip) { FactoryBot.create(:trip, created_at: "2019-#{current_month}-02", price: "2.0") }
-  let!(:trip2) { FactoryBot.create(:trip, created_at: "2019-#{current_month}-02", distance: "100.0") }
-  let!(:trip3) { FactoryBot.create(:trip, created_at: "2019-#{current_month}-27") }
-  let!(:trip4) { FactoryBot.create(:trip, created_at: 1.month.ago) }
+  let!(:current_trip_with_different_price) { FactoryBot.create(:trip, created_at: "2019-#{current_month}-02", price: "2.0") }
+  let!(:current_trip_with_different_distance) { FactoryBot.create(:trip, created_at: "2019-#{current_month}-02", distance: "100.0") }
+  let!(:current_trip_with_different_day) { FactoryBot.create(:trip, created_at: "2019-#{current_month}-27") }
+  let!(:trip_from_last_month) { FactoryBot.create(:trip, created_at: 1.month.ago) }
 
   it 'returns 200 status code' do
     subject
